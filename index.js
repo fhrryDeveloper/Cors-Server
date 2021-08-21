@@ -3,6 +3,7 @@ const request = require('request');
 
 const app = express();
 
+app.use(cors())
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE');
@@ -10,6 +11,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.options('/getprices', cors())
 app.get('/getprices', (req, res) => {
   request(
     { url: 'https://api.integrator.io/v1/apis/601383a129da7d0877bc4eb2/request' },
